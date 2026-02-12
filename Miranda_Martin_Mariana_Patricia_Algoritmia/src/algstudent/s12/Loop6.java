@@ -1,0 +1,48 @@
+package algstudent.s12;
+
+public class Loop6 {
+
+	// Simulate  O(n3 log n) 
+	public static long loop6(int n) {
+		long counter = 0;
+
+        // O(n) - First linear dimension
+        for (int i = 0; i < n; i++) {
+            // O(n) - Second linear dimension (making it n^2)
+            for (int j = 0; j < n; j++) {
+          
+                // O(n) - Second linear dimension (making it n^3)
+                for (int k = 0; k < n; k++) {
+                    
+                    // O(log n) - First logarithmic dimension (making it n^3 log n)
+                    for (int l = 1; l < n; l *= 2) {
+                        counter++; 
+                    }
+                }
+            }
+        }
+        return counter;
+
+	}
+
+	public static void main(String arg[]) {
+		long c = 0;
+		long t1, t2;
+
+		int nTimes = Integer.parseInt(arg[0]);
+
+		System.out.println("n\ttime\trepetions\tcounter");
+
+		for (int n = 100; n <= 819200; n *= 2) {
+			t1 = System.currentTimeMillis();
+
+			for (int repetitions = 1; repetitions <= nTimes; repetitions++)
+				c = loop6(n);
+
+			t2 = System.currentTimeMillis();
+
+			System.out.println(n + "\t" + (t2 - t1) + "\t" + nTimes + "\t\t" + c);
+		} // for
+	} // main
+
+} 
