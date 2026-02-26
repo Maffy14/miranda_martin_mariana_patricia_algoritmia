@@ -102,7 +102,7 @@ public class Vector1 {
 	/**
 	 * This method calculates the number of matches of the input vectors (they are of the same dimension). 
 	 * We define a match as the fact that on the same position there is the same value in both vectors. 
-	 * In this case it is solved "with the happy idea" of two nested loops
+	 * In this case it is solved "with the happy idea" of two nested loops. O(n^2)
 	 * @param a a Vector
 	 * @param b another Vector
 	 * @return number of matches among values

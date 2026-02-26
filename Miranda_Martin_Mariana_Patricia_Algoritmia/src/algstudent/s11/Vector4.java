@@ -9,7 +9,7 @@ public class Vector4 {
 	static int[]v;
 	
 	public static void main(String arg []) {
-		int repetitions = 1000;
+		int repetitions = 10;
 		long t1,t2;
 		int sum = 0;
 		

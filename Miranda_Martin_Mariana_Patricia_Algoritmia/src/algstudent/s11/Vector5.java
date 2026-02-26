@@ -10,7 +10,7 @@ public class Vector5 {
 	static int[]pos;
 	
 	public static void main(String arg []) {
-		int repetitions = 1000;
+		int repetitions = 10;
 		long t1,t2;
 		
 		for (int n=10000; n<=Integer.MAX_VALUE; n*=2){ //n is increased *5   

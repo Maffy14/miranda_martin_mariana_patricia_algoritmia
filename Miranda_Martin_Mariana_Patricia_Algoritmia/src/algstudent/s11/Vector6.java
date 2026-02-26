@@ -10,7 +10,7 @@ public class Vector6 {
 	static int[]v2;
 	
 	public static void main(String arg []) {
-		int repetitions = 1000;
+		int repetitions = 1;
 		long t1,t2;
 		int matches = 0;
 		
