@@ -25,8 +25,11 @@ public class VectorSum2 {
 				  for (int repetition=1;repetition<=nTimes;repetition++)	
 					  sum = VectorSum1.sum1(v);
 				  t2=System.currentTimeMillis();
+				  
+				  double timePerRep = (double) (t2 - t1) / nTimes;
+				  String timePerRepStr = String.format("%.4f", timePerRep);
 				
-				  System.out.println ("SIZE = "+n+"**"+"TIME = "+(t2-t1)+"**"+" nTimes = "+ nTimes + " SUM = " + sum);   
+				  System.out.println("SIZE = " + n + "** TIME = " + (t2 - t1) + "**** TIME/REP = " + timePerRepStr + "** nTimes = " + nTimes + " SUM = " + sum);
 			} //if
 			else if (option==2) { //sum2
 				  t1=System.currentTimeMillis();
@@ -36,7 +39,10 @@ public class VectorSum2 {
 				  
 				  t2=System.currentTimeMillis();
 				 
-				  System.out.println ("SIZE = "+n+"**"+"TIME = "+(t2-t1)+"**"+" nTimes = "+ nTimes + " SUM = " + sum);   
+				  double timePerRep = (double) (t2 - t1) / nTimes;
+				  String timePerRepStr = String.format("%.4f", timePerRep);
+				
+				  System.out.println("SIZE = " + n + "** TIME = " + (t2 - t1) + "**** TIME/REP = " + timePerRepStr + "** nTimes = " + nTimes + " SUM = " + sum); 
 			} //if
 			else if (option==3) { //sum3
 				  t1=System.currentTimeMillis();
@@ -46,7 +52,10 @@ public class VectorSum2 {
 				  
 				  t2=System.currentTimeMillis();
 				 
-				  System.out.println ("SIZE = "+n+"**"+"TIME = "+(t2-t1)+"**"+" nTimes = "+ nTimes + " SUM = " + sum);   
+				  double timePerRep = (double) (t2 - t1) / nTimes;
+				  String timePerRepStr = String.format("%.4f", timePerRep);
+				
+				  System.out.println("SIZE = " + n + "** TIME = " + (t2 - t1) + "**** TIME/REP = " + timePerRepStr + "** nTimes = " + nTimes + " SUM = " + sum);   
 			} //if 
 			else System.out.println ("INCORRECT OPTION"); 		
 		} //for of size n 
