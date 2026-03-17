@@ -70,45 +70,118 @@ public class Assignment {
 	
 	private static int[][] productivity;
 	
-	private StringBuilder outputMessage;
+	private static StringBuilder outputMessage = new StringBuilder();;
 	
 	public Assignment(int[][] productivity) {
 		this.productivity = productivity; 
-		outputMessage = new StringBuilder();
+	}
+	
+	public static String determineAssingmentEmployee() {
+		int p1 = algorithm1();
+		int p2 = algorithm2();
+		
+		int totalProductivity = Math.max(p1, p2);
+		
+		outputMessage.append("LUEGO PROCEDE APLICAR EL ALGORITMO 1\n\nPRDUCTIVIDAD TOTAL= "
+				+ totalProductivity);
+		
+		return outputMessage.toString();
+		
 	}
 	
 	/**
 	 * Simulates assigning to each employee (by index order) the job position in which they have 
 	 * the highest productivity among the positions that have not been previously assigned.
 	 *  
-	 * @return p1, sum sum of the n assigned productivities
+	 * @return Total productivity P1, sum of the n assigned productivities
 	 */
-	public static int algorithm1() { // UNFINISHEDDDD
+	private static int algorithm1() { // UNFINISHEDDDD
 		
-		// Create a boolean array to know which position has already beeen chosen.
-		boolean[] chosenPosition = new boolean[productivity.length - 1]; //?
+		outputMessage.append("ASIGNACION DEL ALGORITMO 1:\n\n");
 		
-		int currentIndex = -1;
+		// Create a boolean array to know which position has already been chosen.
+		boolean[] chosenPosition = new boolean[productivity.length]; //?
+		
 		int maxProductivity = 0;
+		int currentPosition = -1;
+		int sumMaxProductivities = 0;
 		
 		// Iterate through each row, i.e., each employee
 		for (int employee = 0; employee < productivity.length; employee++) {
 			
-			maxProductivity = 0; // Initialize to 0 each time a new employee is chosen			
+			
+			
+			maxProductivity = 0; // Initialize to 0 each time a new employee is chosen	
+			currentPosition = -1;
 			
 			for (int position = 0; position < productivity.length; position++) {
 				
 				// Find the position in which employee_i has the most productivity
 				if (productivity[employee][position] > maxProductivity && !chosenPosition[position]) {
 					maxProductivity = productivity[employee][position];
-					chosenPosition[position] = true;
+					currentPosition = position;
 				}
 				
-				
 			}
+			
+			sumMaxProductivities += maxProductivity; // update sum
+			chosenPosition[currentPosition] = true; // update state positions
+			
+			outputMessage.append("AL EMPLEADO " + employee + 
+					" SE LE ASIGNA EL PUESTO " + currentPosition+ "\n");
 		}
 		
-		return 0;
+		outputMessage.append("\nPRODUCTIVIDAD TOTAL DEL ALGORITMO 1= " + sumMaxProductivities + 
+				"\n\n*********************************************\n");
+		
+		return sumMaxProductivities;
+	}
+	
+	/**
+	 * Simulates assigning each position (by index order) to the employee who has 
+	 * the highest productivity among the employees who have not been previously assigned. 
+	 *  
+	 * @return Total productivity P2, sum of the n assigned productivities
+	 */
+	private static int algorithm2() { // UNFINISHEDDDD
+		
+		outputMessage.append("ASIGNACION DEL ALGORITMO 2:\n\n");
+		
+		// Create a boolean array to know which position has already been chosen.
+		boolean[] chosenEmployee = new boolean[productivity.length]; 
+		
+		int maxProductivity = 0;
+		int currentEmployee = -1;
+		int sumMaxProductivities = 0;
+		
+		// Iterate through each row, i.e., each employee
+		for (int employee = 0; employee < productivity.length; employee++) {
+			
+			
+			maxProductivity = 0; // Initialize to 0 each time a new employee is chosen	
+			currentEmployee = -1;
+			
+			for (int position = 0; position < productivity.length; position++) {
+				
+				// Find the position in which employee_i has the most productivity
+				if (productivity[position][employee] > maxProductivity && !chosenEmployee[position]) {
+					maxProductivity = productivity[position][employee];
+					currentEmployee = position;
+				}
+				
+			}
+			
+			sumMaxProductivities += maxProductivity; // update sum
+			chosenEmployee[currentEmployee] = true; // update state employees
+			
+			outputMessage.append("EL PUESTO " + employee + 
+					" SE LE ASIGNA AL EMPLEADO " + currentEmployee+ "\n");
+		}
+		
+		outputMessage.append("\nPRODUCTIVIDAD TOTAL DEL ALGORITMO 1= " + sumMaxProductivities + 
+				"\n\n*********************************************\n\n");
+		
+		return sumMaxProductivities;
 	}
 	
 
