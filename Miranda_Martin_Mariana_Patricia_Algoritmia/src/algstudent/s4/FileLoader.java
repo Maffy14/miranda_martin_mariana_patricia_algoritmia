@@ -6,7 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class MatrixLoader {
+public class FileLoader {
 
     /**
      * Reads a square matrix from a file.
@@ -14,7 +14,7 @@ public class MatrixLoader {
      * * @param fileName Path to the text file
      * @return 2D integer array [employees][positions]
      */
-    public int[][] readMatrixFromFile(String fileName) {
+    public int[][] loadMatrixFromFile(String fileName) {
         int[][] matrix = null;
 
         try (BufferedReader buffer = new BufferedReader(new FileReader(fileName))) {
@@ -52,7 +52,7 @@ public class MatrixLoader {
          * * @param fileName Path to the text file
          * @return 2D integer array [employees][positions]
          */
-        public String readOutputFile(String fileName) {
+        public String loadOutputFile(String fileName) {
             	 Path filePath = Paths.get(fileName);
             	 String outputMessage = null;
                  

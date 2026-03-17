@@ -6,13 +6,19 @@ public class AssignmentTimes {
 	
 	public static void main(String[] args) {
 		 
-		MatrixLoader buffer = new MatrixLoader();
+		FileLoader buffer = new FileLoader();
+		String outputMessage = buffer.loadOutputFile("src/algstudent/s4/Resultados4.txt");
 		
-		int[][] productivity = buffer.readMatrixFromFile(fileName);
+		int[][] productivity = buffer.loadMatrixFromFile(fileName);
 		
 		Assignment assingment = new Assignment(productivity);
 		
 		System.out.println(assingment.determineAssingmentEmployee());
+		
+		FileLoader loader = new FileLoader();
+		
+		
+		System.out.println(outputMessage);
 
 	}
 

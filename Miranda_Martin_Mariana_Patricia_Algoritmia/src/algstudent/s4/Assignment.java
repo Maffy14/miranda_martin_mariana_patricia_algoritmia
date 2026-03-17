@@ -70,10 +70,12 @@ public class Assignment {
 	
 	private static int[][] productivity;
 	
-	private static StringBuilder outputMessage = new StringBuilder();;
+	private static StringBuilder outputMessage;
+
 	
 	public Assignment(int[][] productivity) {
 		this.productivity = productivity; 
+		outputMessage = new StringBuilder();
 	}
 	
 	public static String determineAssingmentEmployee() {
@@ -82,8 +84,15 @@ public class Assignment {
 		
 		int totalProductivity = Math.max(p1, p2);
 		
-		outputMessage.append("LUEGO PROCEDE APLICAR EL ALGORITMO 1\n\nPRDUCTIVIDAD TOTAL= "
-				+ totalProductivity);
+		int chosenAlgorithm = 0;
+		if (totalProductivity == p1) {
+			chosenAlgorithm = 1;
+		} else {
+			chosenAlgorithm = 2;
+		}
+		
+		outputMessage.append("LUEGO PROCEDE APLICAR EL ALGORITMO "+ chosenAlgorithm + "\r\nPRODUCTIVIDAD TOTAL= "
+				+ totalProductivity+"\r\n");
 		
 		return outputMessage.toString();
 		
@@ -97,7 +106,7 @@ public class Assignment {
 	 */
 	private static int algorithm1() { // UNFINISHEDDDD
 		
-		outputMessage.append("ASIGNACION DEL ALGORITMO 1:\n\n");
+		outputMessage.append("ASIGNACION DEL ALGORITMO 1:\r\n\r\n");
 		
 		// Create a boolean array to know which position has already been chosen.
 		boolean[] chosenPosition = new boolean[productivity.length]; //?
@@ -128,11 +137,11 @@ public class Assignment {
 			chosenPosition[currentPosition] = true; // update state positions
 			
 			outputMessage.append("AL EMPLEADO " + employee + 
-					" SE LE ASIGNA EL PUESTO " + currentPosition+ "\n");
+					" SE LE ASIGNA EL PUESTO " + currentPosition+ "\r\n");
 		}
 		
-		outputMessage.append("\nPRODUCTIVIDAD TOTAL DEL ALGORITMO 1= " + sumMaxProductivities + 
-				"\n\n*********************************************\n");
+		outputMessage.append("\r\nPRODUCTIVIDAD TOTAL DEL ALGORITMO 1= " + sumMaxProductivities + 
+				"\r\n\r\n*********************************************\r\n\r\n");
 		
 		return sumMaxProductivities;
 	}
@@ -145,7 +154,7 @@ public class Assignment {
 	 */
 	private static int algorithm2() { // UNFINISHEDDDD
 		
-		outputMessage.append("ASIGNACION DEL ALGORITMO 2:\n\n");
+		outputMessage.append("ASIGNACION DEL ALGORITMO 2:\r\n\r\n");
 		
 		// Create a boolean array to know which position has already been chosen.
 		boolean[] chosenEmployee = new boolean[productivity.length]; 
@@ -175,11 +184,11 @@ public class Assignment {
 			chosenEmployee[currentEmployee] = true; // update state employees
 			
 			outputMessage.append("EL PUESTO " + employee + 
-					" SE LE ASIGNA AL EMPLEADO " + currentEmployee+ "\n");
+					" SE LE ASIGNA AL EMPLEADO " + currentEmployee+ "\r\n");
 		}
 		
-		outputMessage.append("\nPRODUCTIVIDAD TOTAL DEL ALGORITMO 1= " + sumMaxProductivities + 
-				"\n\n*********************************************\n\n");
+		outputMessage.append("\r\nPRODUCTIVIDAD TOTAL DEL ALGORITMO 1= " + sumMaxProductivities + 
+				"\r\n\r\n*********************************************\r\n\r\n");
 		
 		return sumMaxProductivities;
 	}

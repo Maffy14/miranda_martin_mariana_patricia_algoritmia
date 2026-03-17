@@ -14,33 +14,83 @@ import org.junit.jupiter.api.Test;
  */
 class AssingmentTest {
 
+	FileLoader loader;
+	private Assignment assingment;
+	private int[][] productivity;
+	String outputMessage;
+	private String inputFileName;
+	private String outputFileName;
+	
 	@BeforeEach
 	void setUp() throws Exception {
+		loader = new FileLoader();
+		inputFileName = "src/algstudent/s4/";
+		outputFileName = "src/algstudent/s4/";
 	}
 
 	@Test
 	void datos4Test() {
-		fail("Not yet implemented");
+		inputFileName += "Datos4.txt";
+		outputFileName += "Resultados4.txt";
+		
+		productivity = loader.loadMatrixFromFile(inputFileName);
+		assingment = new Assignment(productivity);
+		
+		outputMessage = loader.loadOutputFile(outputFileName);
+		
+		assertEquals(outputMessage, assingment.determineAssingmentEmployee());
 	}
 	
 	@Test
 	void datos16Test() {
-		fail("Not yet implemented");
+		inputFileName += "Datos16.txt";
+		outputFileName += "Resultados16.txt";
+		
+		productivity = loader.loadMatrixFromFile(inputFileName);
+		assingment = new Assignment(productivity);
+		
+		outputMessage = loader.loadOutputFile(outputFileName);
+		
+		assertEquals(outputMessage, assingment.determineAssingmentEmployee());
 	}
 	
 	@Test
 	void datos64Test() {
-		fail("Not yet implemented");
+		inputFileName += "Datos64.txt";
+		outputFileName += "Resultados64.txt";
+		
+		productivity = loader.loadMatrixFromFile(inputFileName);
+		assingment = new Assignment(productivity);
+		
+		outputMessage = loader.loadOutputFile(outputFileName);
+		
+		assertEquals(outputMessage, assingment.determineAssingmentEmployee());
 	}
 	
 	@Test
 	void datos256Test() {
-		fail("Not yet implemented");
+		inputFileName += "Datos256.txt";
+		outputFileName += "Resultados256.txt";
+		
+		productivity = loader.loadMatrixFromFile(inputFileName);
+		assingment = new Assignment(productivity);
+		
+		outputMessage = loader.loadOutputFile(outputFileName);
+		
+		assertEquals(outputMessage, assingment.determineAssingmentEmployee());
 	}
 	
 	@Test
 	void datos1024Test() {
-		fail("Not yet implemented");
+		inputFileName += "Datos1024.txt";
+		outputFileName += "Resultados1024.txt";
+		
+		productivity = loader.loadMatrixFromFile(inputFileName);
+		assingment = new Assignment(productivity);
+		
+		outputMessage = loader.loadOutputFile(outputFileName);
+		
+		assertEquals(outputMessage, assingment.determineAssingmentEmployee());
 	}
 
 }
