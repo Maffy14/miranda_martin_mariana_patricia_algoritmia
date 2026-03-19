@@ -72,6 +72,14 @@ public class Assignment {
 	
 	private static StringBuilder outputMessage;
 
+	private static String FILENAME = "src/algstudent/s4/Datos4.txt"; 
+	
+	public static void main(String[] args) { 
+		FileLoader loader = new FileLoader();
+		int[][] productivity = loader.loadMatrixFromFile(FILENAME);
+		Assignment assingment = new Assignment(productivity);
+		System.out.println(assingment.determineAssingmentEmployee());
+	}
 	
 	public Assignment(int[][] productivity) {
 		this.productivity = productivity; 
