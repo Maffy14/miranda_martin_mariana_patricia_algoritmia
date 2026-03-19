@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 class AssingmentTest {
 
 	FileLoader loader;
-	private Assignment assingment;
+	private Assignment assingment = new Assignment();;
 	private int[][] productivity;
 	String outputMessage;
 	private String inputFileName;
@@ -34,11 +34,9 @@ class AssingmentTest {
 		outputFileName += "Resultados4.txt";
 		
 		productivity = loader.loadMatrixFromFile(inputFileName);
-		assingment = new Assignment(productivity);
-		
 		outputMessage = loader.loadOutputFile(outputFileName);
 		
-		assertEquals(outputMessage, assingment.determineAssingmentEmployee());
+		assertEquals(outputMessage, assingment.determineAssingmentEmployee(productivity));
 	}
 	
 	@Test
@@ -47,11 +45,9 @@ class AssingmentTest {
 		outputFileName += "Resultados16.txt";
 		
 		productivity = loader.loadMatrixFromFile(inputFileName);
-		assingment = new Assignment(productivity);
-		
 		outputMessage = loader.loadOutputFile(outputFileName);
 		
-		assertEquals(outputMessage, assingment.determineAssingmentEmployee());
+		assertEquals(outputMessage, assingment.determineAssingmentEmployee(productivity));
 	}
 	
 	@Test
@@ -60,11 +56,9 @@ class AssingmentTest {
 		outputFileName += "Resultados64.txt";
 		
 		productivity = loader.loadMatrixFromFile(inputFileName);
-		assingment = new Assignment(productivity);
-		
 		outputMessage = loader.loadOutputFile(outputFileName);
 		
-		assertEquals(outputMessage, assingment.determineAssingmentEmployee());
+		assertEquals(outputMessage, assingment.determineAssingmentEmployee(productivity));
 	}
 	
 	@Test
@@ -73,11 +67,9 @@ class AssingmentTest {
 		outputFileName += "Resultados256.txt";
 		
 		productivity = loader.loadMatrixFromFile(inputFileName);
-		assingment = new Assignment(productivity);
-		
 		outputMessage = loader.loadOutputFile(outputFileName);
 		
-		assertEquals(outputMessage, assingment.determineAssingmentEmployee());
+		assertEquals(outputMessage, assingment.determineAssingmentEmployee(productivity));
 	}
 	
 	@Test
@@ -86,11 +78,9 @@ class AssingmentTest {
 		outputFileName += "Resultados1024.txt";
 		
 		productivity = loader.loadMatrixFromFile(inputFileName);
-		assingment = new Assignment(productivity);
-		
 		outputMessage = loader.loadOutputFile(outputFileName);
 		
-		assertEquals(outputMessage, assingment.determineAssingmentEmployee());
+		assertEquals(outputMessage, assingment.determineAssingmentEmployee(productivity));
 	}
 
 }

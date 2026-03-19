@@ -67,8 +67,7 @@ package algstudent.s4;
  */
 
 public class Assignment {
-	
-	private static int[][] productivity;
+
 	
 	private static StringBuilder outputMessage;
 
@@ -77,22 +76,21 @@ public class Assignment {
 	public static void main(String[] args) { 
 		FileLoader loader = new FileLoader();
 		int[][] productivity = loader.loadMatrixFromFile(FILENAME);
-		Assignment assingment = new Assignment(productivity);
-		System.out.println(assingment.determineAssingmentEmployee());
+		Assignment assingment = new Assignment();
+		System.out.println(assingment.determineAssingmentEmployee(productivity));
 	}
 	
-	public Assignment(int[][] productivity) {
-		this.productivity = productivity; 
+	public Assignment() { 
 		outputMessage = new StringBuilder();
 	}
 	
-	public static String determineAssingmentEmployee() {
-		int p1 = algorithm1();
-		int p2 = algorithm2();
+	public String determineAssingmentEmployee(int[][] productivity) {
+		int p1 = algorithm1(productivity);
+		int p2 = algorithm2(productivity);
 		
 		int totalProductivity = Math.max(p1, p2);
 		
-		int chosenAlgorithm = 0;
+		int chosenAlgorithm = 0; // done mostly to print the value, as the text file provided
 		if (totalProductivity == p1) {
 			chosenAlgorithm = 1;
 		} else {
@@ -112,7 +110,7 @@ public class Assignment {
 	 *  
 	 * @return Total productivity P1, sum of the n assigned productivities
 	 */
-	private static int algorithm1() { // UNFINISHEDDDD
+	private static int algorithm1(int[][] productivity) { // UNFINISHEDDDD
 		
 		outputMessage.append("ASIGNACION DEL ALGORITMO 1:\r\n\r\n");
 		
@@ -160,7 +158,7 @@ public class Assignment {
 	 *  
 	 * @return Total productivity P2, sum of the n assigned productivities
 	 */
-	private static int algorithm2() { // UNFINISHEDDDD
+	private static int algorithm2(int[][] productivity) { // UNFINISHEDDDD
 		
 		outputMessage.append("ASIGNACION DEL ALGORITMO 2:\r\n\r\n");
 		

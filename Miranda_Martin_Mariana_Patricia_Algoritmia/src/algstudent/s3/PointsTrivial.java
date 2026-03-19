@@ -2,7 +2,7 @@ package algstudent.s3;
 
 public class PointsTrivial {
 	
-	private static String FILENAME = "src/algstudent/s3/datos8192.txt"; // I prefer a constant instead of a argument
+	private static String FILENAME = "src/algstudent/s3/datos32.txt"; // I prefer a constant instead of a argument
 	private static int X_COORDINATE = 0;
 	private static int Y_COORDINATE = 1;
 	
@@ -34,7 +34,8 @@ public class PointsTrivial {
 	 * which calculates the solution by determining the distance between every pair of distinct points, 
 	 * thus revealing the desired pair of points and their minimum distance. 
 	 * 
-	 * The complexity is clearly quadratic
+	 * The complexity is clearly quadratic -> O(n)
+	 * 
 	 * @param filename
 	 * @return
 	 */
@@ -47,8 +48,8 @@ public class PointsTrivial {
 		String nearestPoints = null;
 		
 		for (int i = 0; i < numPoints; i++) { // For each point
-			for (int j = 0; j < numPoints; j++) {	// Compare with all the rest
-				if (i != j) { // Except itself
+			// If we iterate initializing j = i + 1, we don't check the same pair twice nor a point against itself.
+			for (int j = i + 1; j < numPoints; j++) {	// Compare with all the rest
 					double currentDistance = getDistanceBetweenPairDistinctPoints(coordinates[i], coordinates[j]);
 					
 					if (currentDistance < minDistance) {
@@ -57,7 +58,6 @@ public class PointsTrivial {
 					}
 				} 
 			}
-		}
 	
 		finalOutput.append("NEAREST POINTS: ");
 		finalOutput.append(nearestPoints);

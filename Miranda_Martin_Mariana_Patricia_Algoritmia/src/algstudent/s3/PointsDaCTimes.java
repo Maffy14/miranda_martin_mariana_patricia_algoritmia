@@ -5,8 +5,8 @@ import java.util.Random;
 public class PointsDaCTimes {
 	
 	private static int COLUMN_X_AND_Y = 2;
-	private static int MIN = 1000;
-	private static int MAX = 9999;
+	private static double MIN = 0.0;
+	private static double MAX = 100.0;
 	private static int X_COORDINATE = 0;
 	private static int Y_COORDINATE = 1;
 	

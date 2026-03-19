@@ -31,10 +31,10 @@ public class AssignmentTimes {
 		
 		for (int n = 1024; n <= 1000000; n *= 2) {
 			productivity = getRandomMatrixProductivity(n);
-			assignment = new Assignment(productivity);
+			assignment = new Assignment();
 			
 			start = System.currentTimeMillis();
-			output = assignment.determineAssingmentEmployee();
+			output = assignment.determineAssingmentEmployee(productivity);
 			end = System.currentTimeMillis();
 			
 			System.out.println("n = " + n + " ** "+ "TIME = " + (end - start));

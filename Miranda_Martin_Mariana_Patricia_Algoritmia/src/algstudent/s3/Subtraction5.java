@@ -1,8 +1,8 @@
 package algstudent.s3;
 
 /* Class that models T(n) =  T(n-1)+O(1)
- * Params: a=3;b=2;k=?
- * The time complexity is cubic O(3^n/2) 
+ * Params: a=3;b=2;k=? -> k =0
+ * The time complexity is O(3^n/2) 
  */
 public class Subtraction5 {
 	public static long rec5(int n) {
