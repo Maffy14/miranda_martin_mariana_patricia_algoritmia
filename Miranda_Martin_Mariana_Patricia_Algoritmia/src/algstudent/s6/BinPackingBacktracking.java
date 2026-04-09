@@ -103,20 +103,7 @@ public class BinPackingBacktracking {
 		currentBin = new ArrayList<>();
 	}
 
-	
-
-	/**
-	 * Prints the input data of the problem
-	 */
-	public void printData() {
-		StringBuilder inputData = new StringBuilder();
-		
-		inputData.append("Size objects-to-be-stored in bins ").append(capacity);
-		
-	}
-
-	public void backtracking() {
-		
+public void backtracking() {
 		
 		// Base check -> We have found the solution
 		if(currentCapacityBin > this.capacity) { // We have processed all objects
@@ -146,10 +133,39 @@ public class BinPackingBacktracking {
 		
 		
 	}
+	
+
+	/**
+	 * Prints the input data of the problem
+	 */
+	public void printData() {
+		System.out.println("Capacity for each bin = " + this.capacity);
+		
+		System.out.print("Size objects-to-be-stored in bins -> ");
+		
+		for (int i = 0; i < this.sizesObjects.size(); i++) {
+			System.out.print(sizesObjects.get(i) + " ");
+		}
+		
+		System.out.println();
+		
+	}
 
 	public void printSolution() {
-		// TODO Auto-generated method stub
+		System.out.println("List of bins and their objects: ");
 		
+		
+		for (int i = 0; i < this.bins.size(); i++) {
+			System.out.print("Bin " + i + ": ");
+			for (int j = 0; j < this.bins.get(i).size(); j++) {
+				System.out.print(bins.get(i).get(j) + " ");
+			}
+			
+			System.out.println();
+		}
+		
+		
+		System.out.println("The minimum number of bins is " + this.minBins);
 	}
 
 	/**

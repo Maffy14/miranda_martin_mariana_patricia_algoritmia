@@ -220,17 +220,30 @@ public class Ferry {
 	
 	
 	public void printData() {
-		String data = this.dataOutput;		
-		System.out.println(data);
+		System.out.println("Length of each lane = " + this.length);
+		
+		System.out.print("Length vehicles -> ");
+		
+		for (int i = 0; i < this.vehicles.size(); i++) {
+			System.out.print(vehicles.get(i) + " ");
+		}
+		
+		System.out.println();
 	}
 
 	public void printPossibleAssignation() {
-		// TODO Auto-generated method stub
+		
 		
 	}
 	
 	public void printSolutionTable() {
-		// TODO Auto-generated method stub
+		System.out.println(this.dataOutput);
+		
+		for (int i = 0; i < DP[0].length; i++) {
+			for (int j = 0; j < DP[0].length; j++) {
+				
+			}
+		}
 		
 	}
 
