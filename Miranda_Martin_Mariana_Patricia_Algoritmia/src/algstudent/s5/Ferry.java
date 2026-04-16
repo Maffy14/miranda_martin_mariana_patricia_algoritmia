@@ -111,10 +111,6 @@ import java.util.List;
 	
 	4. Implementation: Code in the Ferry.java class that solves the problem, passing all the test 
 	cases of the companion file. 
-	
-
-		
-
 */
 
 public class Ferry {
@@ -127,11 +123,8 @@ public class Ferry {
 	
 	private String dataOutput;
 	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+	private int maxVehicles;
 
-	}
-	
 	/**
 	 * 
 	 * @param length
@@ -141,8 +134,6 @@ public class Ferry {
 		this.length = length; // length of each lane [1, 1000]
 		this.vehicles = vehicles; // lengths of the vehicles in order of arrival
 	}
-
-	
 
 	/**
 	 * Perform algorithm 
@@ -158,67 +149,69 @@ public class Ferry {
 		
 		// Initialize DP matrix (number of Vehicles x length port lane)
 		int numVehicles = vehicles.size();
-		DP = new boolean[numVehicles][this.length]; 
+		DP = new boolean[numVehicles + 1][this.length + 1];
 		
 		int si = 0; // sum of lengths of the first i vehicles (total occupied length)
 		
-		// Base case: 0 vehicles = 0 occupation
-		
-		// auxiliary row to know when to stop the loop, i.e., if a whole role has not been modified (false)
-		boolean isRowAllFalse = true;
-		
 		// auxiliary variable to sum the number of vehicles who will actually travel (to print)
-		
 		int numTravellingVehicles = 0;
 		
+		// Base case: 0 vehicles = 0 occupation
 		DP[0][0] = true; 
-		
-		for (int p = 1; p < this.length; p++) {
+
+	 
+		/* Not necessary, false by default
+	 	for (int p = 1; p < this.length; p++) {
 			DP[0][p] = false; 
 		}
+		*/
 		
 		// Recurrence relationship
+		for (int i = 1; i <= numVehicles; i++) {
+
+	        int vi = vehicles.get(i - 1); // length vehicle i
+	        si += vi;
+	        
+	        // auxiliary row to know when to stop the loop, i.e., if a whole role has not been modified (false)
+	        boolean isRowAllFalse = true;
+
+	        for (int p = 0; p <= this.length; p++) {
+
+	            if (!DP[i - 1][p]) continue; // only valid states
+
+	            // Place on port
+	            if ((p + vi) <= this.length) {
+	                DP[i][p + vi] = true;
+	                isRowAllFalse = false;
+	            }
+
+	            // Place on starboard
+	            if ((si - p) <= this.length) { 
+	                DP[i][p] = true;
+	                isRowAllFalse = false;
+	            }
+	        }
+	        
+	        // Exit condition : After iterating a vehicle through the whole port lane, 
+	     	// was the vehicle able to be placed in a lane?
+	        if (isRowAllFalse) break;
+
+	        numTravellingVehicles++; // vi is able to travel
+	    }
 		
-		for (int i = 0; i < numVehicles; i++) {
-			
-			isRowAllFalse = true; // for each vehicle
-			
-			for (int p = 0; p < this.length; p++) {
-				
-				// Place on port
-				int vi = vehicles.get(i); // length vehicle i
-				
-				if ((p + vi) <= this.length) { // Place on port
-					DP[i][p + vi] = true;
-					si += vi;
-					isRowAllFalse = false;
-				}
-				else if ((si - p) <= this.length) { // Place on starboard
-					DP[i][p] = true;
-					si += vi;
-					isRowAllFalse = false;
-				}	
-			}
-			// Exit condition : After iterating a vehicle through the whole port lane, 
-			// was the vehicle able to be placed in a lane?
-			
-			if (isRowAllFalse) break;
-			
-			numTravellingVehicles++; // vi is able to travel
-		}	
+		this.maxVehicles = numTravellingVehicles; // store value in attribute for getter
 		
 		dataOutput = String.format("A total of %d vehicles have arrived (%d will travel)",
 				numVehicles, numTravellingVehicles);
 	}
+	
 
 	public int getMaximumNumberOfVehicles() {
-		// TODO Auto-generated method stub
-		return 0;
+		return maxVehicles;
 	}
 	
 	
-	
-	
+	// --------------------- ALUXILIARY METHODS FOR PRINTING ---------------------------
 	public void printData() {
 		System.out.println("Length of each lane = " + this.length);
 		
@@ -229,22 +222,78 @@ public class Ferry {
 		}
 		
 		System.out.println();
+		System.out.println();
 	}
 
 	public void printPossibleAssignation() {
-		
-		
+	    int port = -1;
+
+	    // Find valid final state
+	    for (int j = length; j >= 0; j--) {
+	        if (DP[maxVehicles][j]) {
+	            port = j;
+	            break;
+	        }
+	    }
+
+	    // To keep track of vehicle lengths to print them later
+	    int portSum = 0;
+	    int starboardSum = 0;
+
+	    String[] solution = new String[maxVehicles];
+
+	    // We iterate BACKWARDS through the vehicles in order to assign them 
+	    for (int i = maxVehicles; i > 0; i--) {
+
+	        int currentVehicleLength = vehicles.get(i - 1);
+
+	        if (DP[i - 1][port]) { // Port length didn't change
+	        	solution[i - 1] = "STARBOARD";
+	            starboardSum += currentVehicleLength; 
+	            
+	        } else {
+	        	solution[i - 1] = "PORT";
+	            portSum += currentVehicleLength;
+	            port = port - currentVehicleLength;        
+	        }
+	    }
+
+	    for (int k = 0; k < solution.length; k++) {
+	        System.out.println("Vehicle " + (k + 1) + 
+	            " (length " + vehicles.get(k) + ") to " + solution[k] + ".");
+	    }
+
+	    System.out.println("\nFinal occupancy: Port " + portSum + 
+	        "m / Starboard " + starboardSum + 
+	        "m (valid <= " + length + ").");
 	}
 	
 	public void printSolutionTable() {
-		System.out.println(this.dataOutput);
-		
-		for (int i = 0; i < DP[0].length; i++) {
-			for (int j = 0; j < DP[0].length; j++) {
-				
-			}
-		}
-		
+	    System.out.println(this.dataOutput);
+	    System.out.println();
+
+	    // Header
+	    System.out.print("V/L  ");
+	    for (int p = 0; p <= length; p++) {
+	        System.out.printf("%3d", p);
+	    }
+	    System.out.println();
+
+	    // Table
+	    for (int i = 0; i <= maxVehicles; i++) {
+	        System.out.printf("%2d  ", i);
+
+	        for (int p = 0; p <= length; p++) {
+	            if (DP[i][p]) System.out.printf("%3s", "T");
+	            else System.out.printf("%3s", "F");
+	        }
+	        System.out.println();
+	    }
+	    
+	    System.out.println();
 	}
+	
+	
+
 
 }
