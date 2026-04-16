@@ -10,7 +10,7 @@ import java.util.List;
 	
 	Given a finite set of objects, each with a positive size, and an unlimited number of identical 
 	containers (bins), each with a fixed maximum capacity, the goal is to 
-		determine the object-to-container assignment that minimizes the total number of containers used, 
+		Determine the object-to-container assignment that minimizes the total number of containers used, 
 		while always satisfying the capacity constraint. 
 	
 	This problem is recognized as NP-hard, meaning that no polynomial-time algorithms are known that 
@@ -101,6 +101,9 @@ public class BinPackingBacktracking {
 		bins = new ArrayList<>();
 		capacityBins = new ArrayList<>();
 		currentBin = new ArrayList<>();
+		
+		// Initialize to the worst possible case (1 bin per object)
+		this.minBins = sizes.size() + 1;
 	}
 
 public void backtracking() {
