@@ -1,9 +1,9 @@
 package algstudent.s6;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-// ordenar lista de elementos de menor a mayor
 /*
 
 	The Bin Packing Problem is considered in its classic form: 
@@ -83,12 +83,16 @@ public class BinPackingBacktracking {
 	
 	private int capacity;
 	private List<Integer> sizesObjects;
+	
+	// Current state
 	private List< List<Integer> > bins;
 	private List<Integer> capacityBins; 
-	List<Integer> currentBin;
-	int currentCapacityBin;
+	
+	// Best solution
+	private List< List<Integer> > bestBins; 
 	private int minBins;
-
+	
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
@@ -98,49 +102,127 @@ public class BinPackingBacktracking {
 	public BinPackingBacktracking(int capacity, List<Integer> sizes) {
 		this.capacity = capacity;
 		this.sizesObjects = sizes;
-		bins = new ArrayList<>();
-		capacityBins = new ArrayList<>();
-		currentBin = new ArrayList<>();
+		
+		this.bins = new ArrayList<>();
+		this.capacityBins = new ArrayList<>();
+		this.bestBins = new ArrayList<>();
 		
 		// Initialize to the worst possible case (1 bin per object)
 		this.minBins = sizes.size() + 1;
 	}
 
-public void backtracking() {
+	
+	/**
+	 * As the test uses a backtracking method with no parameters, this public method  
+	 * calls my implementation of a recursive backtracking, which uses the item index as a parameter
+	 */
+	public void backtracking() {
+		// By sorting objects from largest to smallest, pruning works much better
+		sizesObjects.sort(Collections.reverseOrder());
 		
-		// Base check -> We have found the solution
-		if(currentCapacityBin > this.capacity) { // We have processed all objects
-			// Let's find the solution in 
+        minBins = getGoodInitialSolution();
 		
-			return;
-		}
-		
-		// we explore all possible choices
-		bins.add(currentBin);
-		
-		for (int sizeObject = 0; sizeObject < sizesObjects.size(); sizeObject++) {
-			
-			if (sizeObject <= currentCapacityBin) {
-				// We choose a path
-				currentBin.add(sizeObject);
-				currentCapacityBin += sizeObject;
-				
-				// We recursively explore the current path
-				backtracking();
-				
-				// We undo last path
-				currentBin.remove(currentBin.size() - 1); // remove last element
-				currentCapacityBin -= sizeObject;
-			} 
-		}
-		
-		
+		backtrackingRecursive(0);
 	}
 	
 
-	/**
-	 * Prints the input data of the problem
-	 */
+	private void backtrackingRecursive(int itemIndex) {
+		
+		// Stop if current path is already worse than our best solution
+		// In that way, we don't waste time nor space. (pruning)
+		if (bins.size() >= minBins) {
+			return; 
+		}
+		
+		// Even in the best possible case, is it better than my current best solution? (pruning)
+        int sizesObjectsRemaining = 0;
+        for (int i = itemIndex; i < sizesObjects.size(); i++) {
+            sizesObjectsRemaining += sizesObjects.get(i);
+        }
+
+        // Minimum of extra bins we need to fit the remaining objects
+        int minExtraBins = (sizesObjectsRemaining + capacity - 1) / capacity;
+
+        // This solution is worse or equal to the best solution we already found
+        if (bins.size() + minExtraBins >= minBins) 
+        	return;
+		
+		// We have iterated through all objects.
+		if (itemIndex == sizesObjects.size()) {
+			if (bins.size() < minBins) {
+				minBins = bins.size();
+				
+				// We store the solution
+				bestBins = new ArrayList<>();
+				for (List<Integer> bin : bins) {
+					bestBins.add(new ArrayList<>(bin));
+				}
+			}
+			return;
+		}
+		
+		int currentObjectSize = sizesObjects.get(itemIndex);
+		
+		// We first try to put the current object into EXISTING bins
+		for (int currentBin = 0; currentBin < bins.size(); currentBin++) {
+			if (capacityBins.get(currentBin) + currentObjectSize <= capacity) {
+				
+				bins.get(currentBin).add(currentObjectSize);
+				capacityBins.set(currentBin, capacityBins.get(currentBin) + currentObjectSize);
+				
+				backtrackingRecursive(itemIndex + 1);
+				
+				bins.get(currentBin).remove(bins.get(currentBin).size() - 1);
+				capacityBins.set(currentBin, capacityBins.get(currentBin) - currentObjectSize);
+			}
+		}
+		
+		// There is not enough space ->  We put the current object into a NEW bin
+		if (bins.size() + 1 < minBins) {
+			List<Integer> newBin = new ArrayList<>();
+			newBin.add(currentObjectSize);
+			bins.add(newBin);
+			capacityBins.add(currentObjectSize);
+			
+			backtrackingRecursive(itemIndex + 1);
+			
+			bins.remove(bins.size() - 1);
+			capacityBins.remove(capacityBins.size() - 1);
+		}
+	}
+	
+	// We provide a good initial guess but not the optimal so pruning works better later
+	// We place the item in the first bin where it fits, not the best one.
+	private int getGoodInitialSolution() {
+        List<Integer> currentUsedCapacityBins = new ArrayList<>();
+
+        for (int size : sizesObjects) {
+            boolean placed = false;
+            
+            // We first try to put the current object into EXISTING bins
+            for (int i = 0; i < currentUsedCapacityBins.size(); i++) {
+                if (currentUsedCapacityBins.get(i) + size <= capacity) {
+                	this.bestBins.get(i).add(size);
+                    currentUsedCapacityBins.set(i, currentUsedCapacityBins.get(i) + size);
+                    placed = true;
+                    break;
+                }
+            }
+            
+            // There is not enough space ->  We put the current object into a NEW bin
+            if (!placed) {
+                currentUsedCapacityBins.add(size);
+                List<Integer> newBin = new ArrayList<>();
+                newBin.add(size);
+                this.bestBins.add(newBin);
+            }
+        }
+
+        return currentUsedCapacityBins.size(); 
+    }
+	
+	
+	// Prints the input data of the problem
 	public void printData() {
 		System.out.println("Capacity for each bin = " + this.capacity);
 		
@@ -154,25 +236,30 @@ public void backtracking() {
 		
 	}
 
+	// Prints the output data of the problem
 	public void printSolution() {
-		System.out.println("List of bins and their objects: ");
-		
-		
-		for (int i = 0; i < this.bins.size(); i++) {
-			System.out.print("Bin " + i + ": ");
-			for (int j = 0; j < this.bins.get(i).size(); j++) {
-				System.out.print(bins.get(i).get(j) + " ");
-			}
-			
-			System.out.println();
-		}
-		
-		
-		System.out.println("The minimum number of bins is " + this.minBins);
+	    System.out.println("List of bins and their objects: ");
+	    
+	    // Logic check: We must print the BEST solution found, 
+	    // because 'bins' is empty after backtracking finishes.
+	    if (this.bestBins.isEmpty()) {
+	        System.out.println("No distribution found or backtracking not yet executed.");
+	        return;
+	    }
+
+	    for (int i = 0; i < this.bestBins.size(); i++) {
+	        System.out.print("Bin " + (i + 1) + ": "); // Standard 1-based indexing for humans
+	        for (int j = 0; j < this.bestBins.get(i).size(); j++) {
+	            System.out.print(this.bestBins.get(i).get(j) + " ");
+	        }
+	        System.out.println();
+	    }
+	    
+	    System.out.println("The minimum number of bins is " + this.minBins);
 	}
 
 	/**
-	 * @return minimum number of containers needed to store all objects. 
+	 * @return minimum number of containers needed to store all objects. For testing
 	 */
 	public int getBinsNeededSolution() {
 		return minBins;

@@ -17,7 +17,7 @@ public class BinPackingBacktrackingTests {
 	
 	@Test
 	public void test00() {
-		loadData("src/main/java/labs/en/_26/algteacher/s6/test00.txt");		
+		loadData("src/algstudent/s6/test00.txt");		
 		BinPackingBacktracking problem = new BinPackingBacktracking(this.capacity, this.sizes);
 		problem.printData();
 		problem.backtracking();
@@ -27,7 +27,7 @@ public class BinPackingBacktrackingTests {
 	
 	@Test
 	public void test01() {
-		loadData("src/main/java/labs/en/_26/algteacher/s6/test01.txt");		
+		loadData("src/algstudent/s6/test01.txt");		
 		BinPackingBacktracking problem = new BinPackingBacktracking(this.capacity, this.sizes);
 		problem.printData();
 		problem.backtracking();
@@ -37,7 +37,7 @@ public class BinPackingBacktrackingTests {
 	
 	@Test
 	public void test02() {
-		loadData("src/main/java/labs/en/_26/algteacher/s6/test02.txt");		
+		loadData("src/algstudent/s6/test02.txt");		
 		BinPackingBacktracking problem = new BinPackingBacktracking(this.capacity, this.sizes);
 		problem.printData();
 		problem.backtracking();
@@ -47,7 +47,7 @@ public class BinPackingBacktrackingTests {
 	
 	@Test
 	public void test03() {
-		loadData("src/main/java/labs/en/_26/algteacher/s6/test03.txt");		
+		loadData("src/algstudent/s6/test03.txt");		
 		BinPackingBacktracking problem = new BinPackingBacktracking(this.capacity, this.sizes);
 		problem.printData();
 		problem.backtracking();
@@ -57,7 +57,7 @@ public class BinPackingBacktrackingTests {
 	
 	@Test
 	public void test04() {
-		loadData("src/main/java/labs/en/_26/algteacher/s6/test04.txt");		
+		loadData("src/algstudent/s6/test04.txt");		
 		BinPackingBacktracking problem = new BinPackingBacktracking(this.capacity, this.sizes);
 		problem.printData();
 		problem.backtracking();
@@ -67,7 +67,7 @@ public class BinPackingBacktrackingTests {
 	
 	@Test
 	public void test05() {
-		loadData("src/main/java/labs/en/_26/algteacher/s6/test05.txt");		
+		loadData("src/algstudent/s6/test05.txt");		
 		BinPackingBacktracking problem = new BinPackingBacktracking(this.capacity, this.sizes);
 		problem.printData();
 		problem.backtracking();
@@ -77,7 +77,7 @@ public class BinPackingBacktrackingTests {
 	
 	@Test
 	public void test06() {
-		loadData("src/main/java/labs/en/_26/algteacher/s6/test06.txt");		
+		loadData("src/algstudent/s6/test06.txt");		
 		BinPackingBacktracking problem = new BinPackingBacktracking(this.capacity, this.sizes);
 		problem.printData();
 		problem.backtracking();
@@ -87,7 +87,7 @@ public class BinPackingBacktrackingTests {
 	
 	@Test
 	public void test07() {
-		loadData("src/main/java/labs/en/_26/algteacher/s6/test07.txt");		
+		loadData("src/algstudent/s6/test07.txt");		
 		BinPackingBacktracking problem = new BinPackingBacktracking(this.capacity, this.sizes);
 		problem.printData();
 		problem.backtracking();
@@ -97,7 +97,7 @@ public class BinPackingBacktrackingTests {
 	
 	@Test
 	public void test08() {
-		loadData("src/main/java/labs/en/_26/algteacher/s6/test08.txt");		
+		loadData("src/algstudent/s6/test08.txt");		
 		BinPackingBacktracking problem = new BinPackingBacktracking(this.capacity, this.sizes);
 		problem.printData();
 		problem.backtracking();
@@ -107,7 +107,7 @@ public class BinPackingBacktrackingTests {
 	
 	@Test
 	public void test09() {
-		loadData("src/main/java/labs/en/_26/algteacher/s6/test09.txt");		
+		loadData("src/algstudent/s6/test09.txt");		
 		BinPackingBacktracking problem = new BinPackingBacktracking(this.capacity, this.sizes);
 		problem.printData();
 		problem.backtracking();
