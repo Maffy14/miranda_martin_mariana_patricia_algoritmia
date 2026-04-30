@@ -17,100 +17,100 @@ public class BinPackingBaBTests {
 	
 	@Test
 	public void test00() {
-		loadData("src/main/java/labs/en/_26/algteacher/s6/test00.txt");		
+		loadData("src/algstudent/s7/test00.txt");		
 		BinPackingBaB problem = new BinPackingBaB(this.capacity, this.sizes);
 		problem.printData();
-		problem.backtracking();
+		problem.branchAndBound();
 		problem.printSolution();
 		assertEquals(4, problem.getBinsNeededSolution());
 	}
 	
 	@Test
 	public void test01() {
-		loadData("src/main/java/labs/en/_26/algteacher/s6/test01.txt");		
+		loadData("src/algstudent/s7/test01.txt");		
 		BinPackingBaB problem = new BinPackingBaB(this.capacity, this.sizes);
 		problem.printData();
-		problem.backtracking();
+		problem.branchAndBound();
 		problem.printSolution();
 		assertEquals(1, problem.getBinsNeededSolution());
 	}
 	
 	@Test
 	public void test02() {
-		loadData("src/main/java/labs/en/_26/algteacher/s6/test02.txt");		
+		loadData("src/algstudent/s7/test02.txt");		
 		BinPackingBaB problem = new BinPackingBaB(this.capacity, this.sizes);
 		problem.printData();
-		problem.backtracking();
+		problem.branchAndBound();
 		problem.printSolution();
 		assertEquals(8, problem.getBinsNeededSolution());
 	}
 	
 	@Test
 	public void test03() {
-		loadData("src/main/java/labs/en/_26/algteacher/s6/test03.txt");		
+		loadData("src/algstudent/s7/test03.txt");		
 		BinPackingBaB problem = new BinPackingBaB(this.capacity, this.sizes);
 		problem.printData();
-		problem.backtracking();
+		problem.branchAndBound();
 		problem.printSolution();
 		assertEquals(2, problem.getBinsNeededSolution());
 	}
 	
 	@Test
 	public void test04() {
-		loadData("src/main/java/labs/en/_26/algteacher/s6/test04.txt");		
+		loadData("src/algstudent/s7/test04.txt");		
 		BinPackingBaB problem = new BinPackingBaB(this.capacity, this.sizes);
 		problem.printData();
-		problem.backtracking();
+		problem.branchAndBound();
 		problem.printSolution();
 		assertEquals(10, problem.getBinsNeededSolution());
 	}
 	
 	@Test
 	public void test05() {
-		loadData("src/main/java/labs/en/_26/algteacher/s6/test05.txt");		
+		loadData("src/algstudent/s7/test05.txt");		
 		BinPackingBaB problem = new BinPackingBaB(this.capacity, this.sizes);
 		problem.printData();
-		problem.backtracking();
+		problem.branchAndBound();
 		problem.printSolution();
 		assertEquals(14, problem.getBinsNeededSolution());
 	}
 	
 	@Test
 	public void test06() {
-		loadData("src/main/java/labs/en/_26/algteacher/s6/test06.txt");		
+		loadData("src/algstudent/s7/test06.txt");		
 		BinPackingBaB problem = new BinPackingBaB(this.capacity, this.sizes);
 		problem.printData();
-		problem.backtracking();
+		problem.branchAndBound();
 		problem.printSolution();
 		assertEquals(7, problem.getBinsNeededSolution());
 	}
 	
 	@Test
 	public void test07() {
-		loadData("src/main/java/labs/en/_26/algteacher/s6/test07.txt");		
+		loadData("src/algstudent/s7/test07.txt");		
 		BinPackingBaB problem = new BinPackingBaB(this.capacity, this.sizes);
 		problem.printData();
-		problem.backtracking();
+		problem.branchAndBound();
 		problem.printSolution();
 		assertEquals(8, problem.getBinsNeededSolution());
 	}
 	
 	@Test
 	public void test08() {
-		loadData("src/main/java/labs/en/_26/algteacher/s6/test08.txt");		
+		loadData("src/algstudent/s7/test08.txt");		
 		BinPackingBaB problem = new BinPackingBaB(this.capacity, this.sizes);
 		problem.printData();
-		problem.backtracking();
+		problem.branchAndBound();
 		problem.printSolution();
 		assertEquals(16, problem.getBinsNeededSolution());
 	}
 	
 	@Test
 	public void test09() {
-		loadData("src/main/java/labs/en/_26/algteacher/s6/test09.txt");		
+		loadData("src/algstudent/s7/test09.txt");		
 		BinPackingBaB problem = new BinPackingBaB(this.capacity, this.sizes);
 		problem.printData();
-		problem.backtracking();
+		problem.branchAndBound();
 		problem.printSolution();
 		assertEquals(33, problem.getBinsNeededSolution());
 	}

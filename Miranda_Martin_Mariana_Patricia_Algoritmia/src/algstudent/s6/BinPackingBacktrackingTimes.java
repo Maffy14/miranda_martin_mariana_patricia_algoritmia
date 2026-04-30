@@ -24,10 +24,10 @@ public class BinPackingBacktrackingTimes {
 
 			t1 = System.currentTimeMillis();
 			
-			BinPackingBacktracking problem = null; 
+			BinPackingBactracking problem = null; 
 			
 			for (int repetitions = 1; repetitions <= N_TIMES; repetitions++) {
-				problem = new BinPackingBacktracking(capacity, sizes);
+				problem = new BinPackingBactracking(capacity, sizes);
 				problem.backtracking();
 			}
 
@@ -38,24 +38,20 @@ public class BinPackingBacktrackingTimes {
 	}
 
 	private static void loadData(String file) {
-		sizes = new ArrayList<Integer>();
-		try {
-			BufferedReader reader = new BufferedReader(new FileReader(file));
-			String line1 = reader.readLine();
-			if (line1 != null) {
-				capacity = Integer.parseInt(line1.trim());
-			}
-			
-			String line2 = reader.readLine();
-			if (line2 != null) {
-				String[] parts = line2.trim().split("\\s+");
-				for (String s : parts) {
-					sizes.add(Integer.parseInt(s));
-				}
-			}
-			reader.close();
-		} catch (Exception e) {
-			// If a file isn't found, we just skip it
-		}
-	}
+        sizes = new ArrayList<>();
+
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(file));
+
+            capacity = Integer.parseInt(br.readLine().trim());
+
+            String[] parts = br.readLine().trim().split("\\s+");
+            for (String s : parts) sizes.add(Integer.parseInt(s));
+
+            br.close();
+
+        } catch (Exception e) {
+            System.out.println("Error reading file " + file);
+        }
+    }
 }

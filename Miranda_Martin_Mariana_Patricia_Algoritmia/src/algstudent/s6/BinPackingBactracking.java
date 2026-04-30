@@ -79,7 +79,7 @@ import java.util.List;
 	3. Optionally, the number of recursive calls made can also be printed
 
  */
-public class BinPackingBacktracking {
+public class BinPackingBactracking {
 	
 	private int capacity;
 	private List<Integer> sizesObjects;
@@ -94,12 +94,11 @@ public class BinPackingBacktracking {
 	
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
 	}
 	
 	// Constructor
-	public BinPackingBacktracking(int capacity, List<Integer> sizes) {
+	public BinPackingBactracking(int capacity, List<Integer> sizes) {
 		this.capacity = capacity;
 		this.sizesObjects = sizes;
 		
@@ -134,12 +133,13 @@ public class BinPackingBacktracking {
 			return; 
 		}
 		
+		
 		// Even in the best possible case, is it better than my current best solution? (pruning)
         int sizesObjectsRemaining = 0;
         for (int i = itemIndex; i < sizesObjects.size(); i++) {
             sizesObjectsRemaining += sizesObjects.get(i);
         }
-
+        
         // Minimum of extra bins we need to fit the remaining objects
         int minExtraBins = (sizesObjectsRemaining + capacity - 1) / capacity;
 
@@ -190,6 +190,7 @@ public class BinPackingBacktracking {
 			capacityBins.remove(capacityBins.size() - 1);
 		}
 	}
+	
 	
 	// We provide a good initial guess but not the optimal so pruning works better later
 	// We place the item in the first bin where it fits, not the best one.
